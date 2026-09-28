@@ -6,7 +6,7 @@ import { profile } from '../data/profile';
 interface Props { language: Language; }
 const { language } = Astro.props;
 const t = ui[language];
-const title = language === 'en' ? 'Masaya Hara | Differential Geometry' : '原 誠弥 | 微分幾何学';
+const title = language === 'en' ? 'Masaya Hara' : '原 誠弥';
 const description = language === 'en'
   ? 'Masaya Hara is an Assistant Professor at National Institute of Technology, Anan College, working in differential geometry, integrable systems, transformation theory, and discrete differential geometry.'
   : '原 誠弥は阿南工業高等専門学校の助教で、微分幾何学、可積分系、変換理論、離散微分幾何学を研究しています。';
@@ -30,6 +30,13 @@ const person = {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <title>{title}</title>
+    <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="canonical" href={canonical} />
     <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
     <script type="application/ld+json" set:html={JSON.stringify(person).replace(/</g, '\\u003c')} />
