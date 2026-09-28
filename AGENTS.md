@@ -1,0 +1,16 @@
+- Follow explicit specifications in `docs/` and the user's current instructions.
+- Do not make product, content, visual-design, or information-architecture decisions unless explicitly instructed.
+- Do not add dependencies unless explicitly instructed.
+- Do not introduce React, Vue, Svelte, or another frontend framework unless explicitly instructed.
+- Keep the site static-first. Client-side JavaScript should be used only where functionality requires it.
+- Three.js should eventually be isolated to the interactive surface-viewer functionality rather than loaded globally across the site.
+- Use TypeScript for nontrivial client-side logic.
+- Code comments must be concise and written in English.
+- Do not rename or reorganize existing files, components, routes, data structures, or APIs without an explicit reason from the user.
+- Make only changes necessary for the current task.
+- Do not perform broad refactors unless explicitly requested.
+- Do not modify files in `references/` unless explicitly instructed.
+- After code changes, run the appropriate build or validation command and report failures clearly.
+- Never hide build errors or warnings.
+- Do not create a GitHub remote, push commits, deploy the site, or change GitHub settings unless explicitly instructed.
+- Do not modify system-wide software or configuration.

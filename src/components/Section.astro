@@ -1,0 +1,13 @@
+---
+import Icon from './Icon.astro';
+interface Props { id: string; title: string; }
+const { id, title } = Astro.props;
+---
+
+<section id={id} class="content-section" aria-labelledby={`${id}-title`}>
+  <header class="section-heading">
+    <h2 id={`${id}-title`}><Icon name={id} />{title}</h2>
+    <slot name="action" />
+  </header>
+  <slot />
+</section>

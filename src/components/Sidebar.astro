@@ -1,0 +1,76 @@
+---
+import { surfaceGalleryEnabled } from '../data/release';
+import { ui, sectionIds, type Language } from '../data/i18n';
+interface Props { language: Language; }
+const { language } = Astro.props;
+const t = ui[language];
+const sections = sectionIds.map((id, i) => ({ id, title: t.nav[i] })).filter(section => surfaceGalleryEnabled || section.id !== 'surfaces');
+import Icon from './Icon.astro';
+import SurfaceArt from './SurfaceArt.astro';
+---
+
+<aside class="sidebar" aria-label={t.navigation}>
+  <div class="sidebar-heading">
+    <a class="site-name" href="#introduction">Masaya Hara</a>
+    <div class="language-switch" aria-label={t.language}>
+      <a href="/" data-language-link="/" lang="en" hreflang="en" aria-current={language === 'en' ? 'page' : undefined}>EN</a>
+      <a href="/ja/" data-language-link="/ja/" lang="ja" hreflang="ja" aria-current={language === 'ja' ? 'page' : undefined}>JA</a>
+    </div>
+  </div>
+  <nav aria-label={t.navigation}>
+    {sections.map((section, i) => <a href={`#${section.id}`} data-section-link={section.id} aria-current={i === 0 ? 'location' : undefined}>
+      <Icon name={section.id} />
+      <span>{section.title}</span>
+    </a>)}
+  </nav>
+  <div class="sidebar-motif" aria-hidden="true"><SurfaceArt kind="wave" /></div>
+</aside>
+
+<script>
+  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-section-link]'));
+  const sections = links.map(link => document.getElementById(link.dataset.sectionLink ?? '')).filter((section): section is HTMLElement => section !== null);
+  const languageLinks = document.querySelectorAll<HTMLAnchorElement>('[data-language-link]');
+  const syncLanguageLinks = () => {
+    for (const link of languageLinks) link.href = `${link.dataset.languageLink}${window.location.hash}`;
+  };
+  window.addEventListener('hashchange', syncLanguageLinks);
+  syncLanguageLinks();
+  let scheduled = false;
+  const updateActiveSection = () => {
+    const threshold = window.innerHeight * 0.35;
+    let current: HTMLElement | undefined = sections[0];
+    let currentTop = -Infinity;
+    for (const section of sections) {
+      const top = section.getBoundingClientRect().top;
+      if (top <= threshold && (top > currentTop + 1 || section.id === window.location.hash.slice(1))) {
+        current = section;
+        currentTop = top;
+      }
+    }
+    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4) {
+      const target = sections.find(section => section.id === window.location.hash.slice(1));
+      const targetTop = target?.getBoundingClientRect().top ?? -1;
+      current = target && targetTop >= 0 ? target : sections.at(-1);
+    }
+    for (const link of links) {
+      if (link.dataset.sectionLink === current?.id) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    }
+    scheduled = false;
+  };
+  const scheduleUpdate = () => {
+    if (!scheduled) {
+      scheduled = true;
+      requestAnimationFrame(updateActiveSection);
+    }
+  };
+  window.addEventListener('scroll', scheduleUpdate, { passive: true });
+  window.addEventListener('resize', scheduleUpdate);
+  window.addEventListener('hashchange', scheduleUpdate);
+  document.addEventListener('homepage:layout', scheduleUpdate);
+  const sidebar = document.querySelector<HTMLElement>('.sidebar')!;
+  new ResizeObserver(() => {
+    document.documentElement.style.setProperty('--mobile-nav-offset', `${sidebar.offsetHeight + 12}px`);
+  }).observe(sidebar);
+  updateActiveSection();
+</script>

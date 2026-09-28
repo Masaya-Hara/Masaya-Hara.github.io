@@ -1,0 +1,17 @@
+---
+import { ui, type Language } from '../data/i18n';
+interface Props { id: string; language: Language; filters: Record<string, string>; label: string; limit?: number; }
+const { id, language, filters, label, limit = 6 } = Astro.props;
+const t = ui[language];
+---
+<div data-filter-list data-limit={limit} data-count-template={t.results}>
+  <div class="filter-controls" role="group" aria-label={label} hidden>
+    {Object.entries(filters).map(([key, value]) => <button type="button" data-filter={key} aria-pressed={key === 'all'} aria-controls={`${id}-list`}>{value}</button>)}
+  </div>
+  <div id={`${id}-list`}><slot /></div>
+  <p class="empty-results" data-empty hidden>{t.empty}</p>
+  <div class="list-controls" hidden>
+    <p class="result-count" data-count role="status" aria-live="polite"></p>
+    <button type="button" data-expand data-show-label={t.showAll} data-collapse-label={t.collapse} aria-controls={`${id}-list`} aria-expanded="false" hidden>{t.showAll}</button>
+  </div>
+</div>

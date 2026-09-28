@@ -1,0 +1,17 @@
+{
+  "name": "masaya-hara.github.io",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.3.5",
+    "katex": "^0.18.9",
+    "three": "^0.186.1"
+  }
+}

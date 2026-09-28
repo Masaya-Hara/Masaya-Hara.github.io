@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://masaya-hara.github.io/sitemap-index.xml

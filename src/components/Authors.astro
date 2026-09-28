@@ -1,0 +1,5 @@
+---
+interface Props { authors: string[]; }
+const { authors } = Astro.props;
+---
+<span>{authors.map((author, i) => <>{i > 0 && ', '}{/^(Masaya Hara|M\. Hara)$/.test(author) ? <strong>{author}</strong> : author}</>)}</span>

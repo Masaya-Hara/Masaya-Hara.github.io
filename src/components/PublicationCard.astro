@@ -1,0 +1,22 @@
+---
+import InlineMath from './InlineMath.astro';
+import SurfaceArt from './SurfaceArt.astro';
+import Authors from './Authors.astro';
+import PublicationLinks from './PublicationLinks.astro';
+import type { Publication } from '../data/publications';
+import { ui, type Language } from '../data/i18n';
+interface Props { publication: Publication; language: Language; }
+const { publication: p, language } = Astro.props;
+const t = ui[language];
+---
+<article class="publication-card" data-filter-item data-tags={p.category} data-publication={p.id}>
+  <div class="publication-image" title={t.imagePlaceholder}><SurfaceArt kind={p.image} /></div>
+  <div class="publication-content">
+    <p class="sample-label">{t.publicationFilters[p.category]}</p>
+    <h3><button class="publication-open" type="button" data-open-publication={p.id} aria-haspopup="dialog" aria-controls={`dialog-${p.id}`} disabled><InlineMath text={p.title} /></button></h3>
+    <p class="publication-authors"><Authors authors={p.authors} /></p>
+    <p class="publication-venue">{p.type && `${p.type} · `}{p.venue}</p>
+    <p class="publication-meta">{p.bibliography ?? (p.year ?? t.yearUnknown)}{p.status === 'to-appear' && ` · ${t.toAppear}`}{p.pages && ` · pp. ${p.pages}`}</p>
+    <PublicationLinks publication={p} language={language} />
+  </div>
+</article>

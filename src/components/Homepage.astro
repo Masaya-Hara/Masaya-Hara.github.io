@@ -1,0 +1,106 @@
+---
+import { surfaceGalleryEnabled } from '../data/release';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from './Section.astro';
+import InlineMath from './InlineMath.astro';
+import Authors from './Authors.astro';
+import SurfaceArt from './SurfaceArt.astro';
+import Icon from './Icon.astro';
+import PublicationCard from './PublicationCard.astro';
+import PublicationModal from './PublicationModal.astro';
+import FilterList from './FilterList.astro';
+import { profile, researchAreas, employment, funding, dateRange } from '../data/profile';
+import { publications } from '../data/publications';
+import { talks } from '../data/talks';
+import { surfacePreviews } from '../data/surfaces';
+import { ui, type Language } from '../data/i18n';
+interface Props { language: Language; }
+const { language } = Astro.props;
+const t = ui[language];
+---
+<BaseLayout language={language}>
+  <section id="introduction" class="hero" aria-labelledby="introduction-title">
+    <!-- Replace this decorative layer with a background asset when supplied. -->
+    <div class="hero-background" aria-hidden="true"><SurfaceArt kind="wave" /></div>
+    <div class="hero-copy">
+      <h1 id="introduction-title">{profile.name[language]}</h1>
+      {language === 'ja' && <p class="roman-name" lang="en">{profile.romanName}</p>}
+      <p class="position">{profile.position[language]}</p>
+      <p class="affiliation">{profile.institution[language]}</p>
+      {language === 'ja' && <p class="hero-department">{profile.department[language]}</p>}
+      <ul class="hero-keywords">{researchAreas.map(area => <li><InlineMath text={area.title[language]} /></li>)}</ul>
+      <div class="profile-links">
+        {profile.links.map(link => {
+          const Tag = link.href ? 'a' : 'span';
+          return <Tag href={link.href ?? undefined} aria-disabled={!link.href ? 'true' : undefined} title={!link.href ? t.profilePending : undefined}>
+            {link.icon === 'jglobal' ? <Icon name="jglobal" /> : <span class:list={['profile-icon', link.icon]} aria-hidden="true">{link.icon === 'orcid' ? 'iD' : 'R'}</span>}
+            {link.label}
+          </Tag>;
+        })}
+      </div>
+      {profile.links.some(link => !link.href) && <p class="pending-note">{t.profilePending}</p>}
+      <p class="self-introduction"><InlineMath text={profile.introduction[language]} /></p>
+    </div>
+  </section>
+
+  <Section id="research" title={t.nav[1]}>
+    <div class="research-grid">{researchAreas.map(area => <article class="research-card"><h3><InlineMath text={area.title[language]} /></h3><p><InlineMath text={area.description[language]} /></p></article>)}</div>
+  </Section>
+
+  <Section id="publications" title={t.nav[2]}>
+    <FilterList id="publications" language={language} filters={t.publicationFilters} label={t.filterPublications}>
+      <div class="publication-list">{publications.map(publication => <PublicationCard publication={publication} language={language} />)}</div>
+    </FilterList>
+  </Section>
+  {publications.map(publication => <PublicationModal publication={publication} language={language} />)}
+
+  <Section id="talks" title={t.nav[3]}>
+    <FilterList id="talks" language={language} filters={t.talkFilters} label={t.filterTalks} limit={10}>
+      <ol class="talk-list">{talks.map(talk => <li class="talk-row" data-filter-item data-tags={`${talk.scope}${talk.invited ? ' invited' : ''}`}>
+        <p class="talk-date"><time datetime={talk.date}>{talk.date}</time>{talk.invited && <span class="invited-marker">{t.invited}</span>}</p>
+        <div><h3><InlineMath text={talk.title} /></h3>{talk.authors && <p>{t.coauthored}: <Authors authors={talk.authors} /></p>}</div>
+        <p>{talk.url ? <a href={talk.url}><InlineMath text={talk.event} /></a> : <InlineMath text={talk.event} />}</p>
+        <p class="talk-location">{talk.location}</p>
+      </li>)}</ol>
+    </FilterList>
+  </Section>
+
+  <Section id="cv" title={t.nav[4]}>
+    <div class="cv-grid">
+      <article class="cv-block">
+        <h3>{t.position}</h3>
+        <div class="position-record"><p class="cv-date">{dateRange(employment.current.start, employment.current.end, language)}</p>
+          {language === 'en' ? <p>{profile.position.en}<br />{profile.institution.en}<br />{profile.department.en}</p> : <p>{profile.institution.ja}<br />{profile.department.ja}<br />{profile.position.ja}</p>}
+        </div>
+        <div class="position-record"><p class="cv-date">{dateRange(employment.teaching.start, employment.teaching.end, language)}</p>
+          {language === 'en' ? <p>{employment.teaching.role.en}<br />{employment.teaching.institution.en}</p> : <p>{employment.teaching.institution.ja}<br />{employment.teaching.role.ja}</p>}
+        </div>
+      </article>
+      <article class="cv-block funding-block">
+        <h3>{t.funding}</h3>
+        <p class="cv-date">{funding.firstFiscalYear}–{funding.lastFiscalYear}{language === 'ja' ? '年度' : ''}</p>
+        <p>{funding.agency[language]}<br />{funding.scheme[language]}</p>
+        <p class="funding-title"><InlineMath text={funding.title[language]} /></p>
+        <p>{t.principalInvestigator}</p>
+        <p>{t.grantNumber}: <a href={funding.url[language]}>{funding.number}</a></p>
+      </article>
+    </div>
+  </Section>
+    <Section id="contact" title={t.nav[5]}>
+      <dl class="contact-grid">
+        <div><dt>{t.email}</dt><dd><a href={`mailto:${profile.email}`}>{profile.email}</a></dd></div>
+        <div><dt>{t.affiliation}</dt><dd>{profile.institution[language]}<br />{profile.department[language]}</dd></div>
+        <div><dt>{t.address}</dt><dd class="postal-address">{profile.address[language]}</dd></div>
+      </dl>
+    </Section>
+
+  {surfaceGalleryEnabled && <Section id="surfaces" title={t.nav[6]}>
+    <button slot="action" type="button" class="gallery-link" disabled aria-describedby="gallery-status" lang="en">View all surfaces <span aria-hidden="true">→</span></button>
+    <p id="gallery-status" class="editorial-note">{t.surfaceNote}</p>
+    <div class="surface-grid">{surfacePreviews.map(surface => <article class="surface-card" lang="en"><div class="surface-image"><SurfaceArt kind={surface.kind} /></div><h3><InlineMath text={surface.title} /></h3><p class="surface-tag"><InlineMath text={surface.tag} /></p></article>)}</div>
+  </Section>}
+  <footer class="site-footer"><span lang="en">© {profile.romanName}</span><span>{profile.institution[language]}</span></footer>
+</BaseLayout>
+<script>
+  import '../scripts/home';
+</script>

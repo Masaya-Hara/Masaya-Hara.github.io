@@ -1,0 +1,9 @@
+---
+import { ui, type Language } from '../data/i18n';
+import type { Publication } from '../data/publications';
+interface Props { publication: Publication; language: Language; }
+const { publication, language } = Astro.props;
+---
+<div class="publication-links">
+  {publication.links.map(link => <a href={link.href} target={link.href === '/papers/hara-phd-thesis-2026.pdf' ? '_blank' : undefined} rel={link.href === '/papers/hara-phd-thesis-2026.pdf' ? 'noopener' : undefined}>{ui[language].links[link.kind]}</a>)}
+</div>

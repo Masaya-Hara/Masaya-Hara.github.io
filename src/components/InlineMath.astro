@@ -1,0 +1,11 @@
+---
+import 'katex/dist/katex.min.css';
+import { renderInlineMath } from '../utils/inlineMath';
+
+interface Props { text: string; }
+const parts = renderInlineMath(Astro.props.text);
+---
+{parts.map(part => part.kind === 'math' ? <span class="inline-math" set:html={part.html} /> : part.text)}
+<style>
+  .inline-math :global(.katex) { font-size: 1em; }
+</style>
