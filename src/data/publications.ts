@@ -27,6 +27,7 @@ const records: Publication[] = [
   {
     id: 'discrete-cmc-isotropic',
     title: 'Weierstrass representations of discrete constant mean curvature surfaces in isotropic space',
+    imageSrc: '/images/publications/ch2027.png',
     authors: ['Joseph Cho', 'Masaya Hara'], venue: 'Annales Polonici Mathematici',
     year: 2026, status: 'to-appear', category: 'peer-reviewed', image: 'wave',
     links: [
@@ -60,6 +61,7 @@ const records: Publication[] = [
   {
     id: 'decomposition-invariants',
     title: 'Geometric properties invariant under the decomposition of zero mean curvature surfaces',
+    imageSrc: '/images/publications/acho2025.png',
     authors: ['Shintaro Akamine', 'Joseph Cho', 'Masaya Hara', 'Yuta Ogata'],
     venue: 'manuscripta mathematica', bibliography: '176 (2025), no. 5, 73',
     year: 2025, category: 'peer-reviewed', image: 'saddle',
@@ -77,6 +79,7 @@ const records: Publication[] = [
   {
     id: 'planar-curvature-lines',
     title: 'Zero mean curvature surfaces in isotropic space with planar curvature lines',
+    imageSrc: '/images/publications/ch2026.png',
     authors: ['Joseph Cho', 'Masaya Hara'], venue: 'Portugaliae Mathematica', bibliography: '83 (2026), no. 1/2, 113–144',
     year: 2026, category: 'peer-reviewed', image: 'wave',
     links: [
@@ -93,7 +96,7 @@ const records: Publication[] = [
   },
   {
     id: 'lie-minimal', title: 'Lie minimal Weingarten surfaces',
-    imageSrc: '/images/publications/lie-minimal-weingarten-surfaces.png',
+    imageSrc: '/images/publications/chpt2025.png',
     authors: ['Joseph Cho', 'Masaya Hara', 'Denis Polly', 'Tomohiro Tada'],
     venue: 'Hiroshima Mathematical Journal', bibliography: '55 (2025), no. 2, 151–165',
     year: 2025, category: 'peer-reviewed', image: 'ribbon',
@@ -110,6 +113,7 @@ const records: Publication[] = [
   },
   {
     id: 'phd-thesis', title: 'Constant mean curvature surfaces in simply isotropic 3-space',
+    imageSrc: '/images/publications/phd.png',
     authors: ['Masaya Hara'], venue: 'Kobe University', type: 'PhD Thesis',
     year: 2026, category: 'thesis', image: 'saddle',
     links: [
@@ -119,6 +123,7 @@ const records: Publication[] = [
   },
   {
     id: 'rims-2321', title: 'Zero mean curvature surfaces with planar curvature lines in isotropic 3-space',
+    imageSrc: '/images/publications/kokyuroku2025.png',
     authors: ['Masaya Hara'], venue: 'RIMS Kôkyûroku 2321',
     year: 2025, category: 'misc', image: 'wave',
     links: [
