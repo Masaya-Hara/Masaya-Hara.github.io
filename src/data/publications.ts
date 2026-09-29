@@ -129,6 +129,7 @@ const records: Publication[] = [
   },
   {
     id: 'maximal-darboux', title: 'Maximal Darboux transformations',
+    imageSrc: '/images/publications/mathsci.png',
     authors: ['Masaya Hara'], venue: '第8回 数理新人セミナー報告集',
     year: 2025, category: 'misc', image: 'ribbon',
     links: [
