@@ -44,6 +44,7 @@ const records: Publication[] = [
   {
     id: 'lorentz-darboux',
     title: 'Darboux transformations of spacelike curves in the Lorentz-Minkowski plane',
+    imageSrc: '/images/publications/aspm.png',
     authors: ['Masaya Hara'],
     venue: 'Differential Geometry and Integrable Systems, Advanced Studies in Pure Mathematics, Mathematical Society of Japan, proceedings of the 13th MSJ-SI, 2022/2023, OCAMI',
     year: 2026, status: 'to-appear', category: 'peer-reviewed', image: 'ribbon',
