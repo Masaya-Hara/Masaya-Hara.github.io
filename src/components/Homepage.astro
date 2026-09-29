@@ -56,11 +56,12 @@ const t = ui[language];
 
   <Section id="talks" title={t.nav[3]}>
     <FilterList id="talks" language={language} filters={t.talkFilters} label={t.filterTalks} limit={10}>
+      <div class="talk-header" aria-hidden="true">{Object.values(t.talkColumns).map(label => <span>{label}</span>)}</div>
       <ol class="talk-list">{talks.map(talk => <li class="talk-row" data-filter-item data-tags={`${talk.scope}${talk.invited ? ' invited' : ''}`}>
-        <p class="talk-date"><time datetime={talk.date}>{talk.date}</time>{talk.invited && <span class="invited-marker">{t.invited}</span>}</p>
-        <div><h3><InlineMath text={talk.title} /></h3>{talk.authors && <p>{t.coauthored}: <Authors authors={talk.authors} /></p>}</div>
-        <p>{talk.url ? <a href={talk.url}><InlineMath text={talk.event} /></a> : <InlineMath text={talk.event} />}</p>
-        <p class="talk-location">{talk.location}</p>
+        <p class="talk-date"><span class="sr-only">{t.talkColumns.date}: </span><time datetime={talk.date}>{talk.date}</time>{talk.invited && <span class="invited-marker">{t.invited}</span>}</p>
+        <div><h3><span class="sr-only">{t.talkColumns.title}: </span><InlineMath text={talk.title} /></h3>{talk.authors && <p>{t.coauthored}: <Authors authors={talk.authors} /></p>}</div>
+        <p class="talk-event"><span class="row-label">{t.talkColumns.event}: </span>{talk.url ? <a href={talk.url}><InlineMath text={talk.event} /></a> : <InlineMath text={talk.event} />}</p>
+        <p class="talk-location"><span class="row-label">{t.talkColumns.place}: </span>{talk.location}</p>
       </li>)}</ol>
     </FilterList>
   </Section>
@@ -78,11 +79,13 @@ const t = ui[language];
       </article>
       <article class="cv-block funding-block">
         <h3>{t.funding}</h3>
-        <p class="cv-date">{funding.firstFiscalYear}–{funding.lastFiscalYear}{language === 'ja' ? '年度' : ''}</p>
-        <p>{funding.agency[language]}<br />{funding.scheme[language]}</p>
-        <p class="funding-title"><InlineMath text={funding.title[language]} /></p>
-        <p>{t.principalInvestigator}</p>
-        <p>{t.grantNumber}: <a href={funding.url[language]}>{funding.number}</a></p>
+        <div class="grant-header" aria-hidden="true">{Object.values(t.grantColumns).map(label => <span>{label}</span>)}</div>
+        <ul class="grant-list">{[funding].map(grant => <li class="grant-row">
+          <p class="cv-date"><span class="sr-only">{t.grantColumns.year}: </span>{grant.firstFiscalYear}–{grant.lastFiscalYear}{language === 'ja' ? '年度' : ''}</p>
+          <div class="grant-project"><p><span class="sr-only">{t.grantColumns.project}: </span><strong>{grant.agency[language]}</strong> · {grant.scheme[language]}</p><p class="funding-title"><InlineMath text={grant.title[language]} /></p></div>
+          <p class="grant-role"><span class="row-label">{t.grantColumns.role}: </span>{t.principalInvestigator}</p>
+          <p class="grant-number"><span class="row-label">{t.grantNumber}: </span><a href={grant.url[language]}>{grant.number}</a></p>
+        </li>)}</ul>
       </article>
     </div>
   </Section>
