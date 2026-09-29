@@ -15,6 +15,7 @@ export interface Publication {
   type?: string;
   category: PublicationCategory;
   image: SurfaceKind;
+  imageSrc?: string;
   links: { kind: LinkKind; href: string }[];
   technicalSummary?: { text: Localized; source: string };
   relatedSurfaces?: { title: string; href: string }[];
@@ -92,6 +93,7 @@ const records: Publication[] = [
   },
   {
     id: 'lie-minimal', title: 'Lie minimal Weingarten surfaces',
+    imageSrc: '/images/publications/lie-minimal-weingarten-surfaces.png',
     authors: ['Joseph Cho', 'Masaya Hara', 'Denis Polly', 'Tomohiro Tada'],
     venue: 'Hiroshima Mathematical Journal', bibliography: '55 (2025), no. 2, 151–165',
     year: 2025, category: 'peer-reviewed', image: 'ribbon',

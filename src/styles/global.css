@@ -342,3 +342,8 @@ h1, .section-heading h2 { font-weight: 600; }
 @media (max-width: 540px) {
   .position-record { grid-template-columns: minmax(0, 1fr); gap: 4px; }
 }
+
+/* Real figures retain transparency and their full aspect ratio. */
+.publication-image.has-publication-image { background: transparent; justify-content: center; }
+.publication-image > img { display: block; width: 100%; height: auto; max-height: 180px; object-fit: contain; }
+.publication-modal-image { display: block; width: 100%; height: auto; max-height: 320px; object-fit: contain; margin-top: 16px; }
