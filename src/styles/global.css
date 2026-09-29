@@ -250,7 +250,6 @@ body.modal-open { overflow: hidden; }
   font-family: var(--font-body);
   font-variant-numeric: lining-nums tabular-nums;
 }
-.position-record + .position-record { margin-top: 16px; }
 .talk-row > div { min-width: 0; }
 @media (max-width: 760px) {
   .sidebar nav a { font-size: 14px; }
@@ -326,12 +325,17 @@ h1, .section-heading h2 { font-weight: 600; }
   .publication-card { transition: none; }
 }
 
-/* Separate employment period, role, and institution without adding panels. */
-.position-record { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 18px; align-items: start; margin-top: 12px; }
-.position-record > * { min-width: 0; }
+/* Employment uses the same compact rows as grants. */
+.position-header, .position-record { display: grid; grid-template-columns: 160px 170px minmax(0, 1fr); gap: 15px; }
+.position-header { background: var(--pale); border-bottom: 1px solid var(--line); padding-block: 8px; color: var(--blue); font-size: 14px; font-weight: 600; }
+.position-list { list-style: none; margin: 0; padding: 0; }
+.position-record { align-items: start; padding-block: 12px; border-bottom: 1px solid var(--line); }
+.position-header > *, .position-record > * { min-width: 0; overflow-wrap: anywhere; }
 .position-record .cv-date { margin: 0; color: var(--blue); }
 .position-record .position-role { font-weight: 600; color: var(--navy); }
-.position-institution { padding-left: 10px; margin-top: 3px; }
+html[lang='en'] .postal-address { white-space: pre; }
+html[lang='en'] .hero-copy { max-width: 900px; }
+html[lang='en'] .hero-keywords { max-width: 100%; gap: 5px 6px; }
 .grant-program { margin-top: 5px; }
 .email-contact { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
 .copy-email { border: 1px solid var(--line); border-radius: 4px; background: var(--white); color: var(--blue); font-size: 13px; padding: 3px 8px; cursor: pointer; }
@@ -339,11 +343,12 @@ h1, .section-heading h2 { font-weight: 600; }
 @container main-content (max-width: 650px) {
   .contact-grid { grid-template-columns: minmax(0, 1fr); }
 }
-@media (max-width: 540px) {
+@container main-content (max-width: 650px) {
+  .position-header { display: none; }
+  .position-record .row-label { position: static; width: auto; height: auto; clip-path: none; white-space: normal; overflow: visible; font-weight: 600; color: var(--blue); }
   .position-record { grid-template-columns: minmax(0, 1fr); gap: 4px; }
 }
 
 /* Real figures retain transparency and their full aspect ratio. */
 .publication-image.has-publication-image { background: transparent; justify-content: center; }
 .publication-image > img { display: block; width: 100%; height: auto; max-height: 180px; object-fit: contain; }
-.publication-modal-image { display: block; width: 100%; height: auto; max-height: 320px; object-fit: contain; margin-top: 16px; }

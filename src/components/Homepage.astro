@@ -17,6 +17,10 @@ import { ui, type Language } from '../data/i18n';
 interface Props { language: Language; }
 const { language } = Astro.props;
 const t = ui[language];
+const positions = [
+  { ...employment.current, role: profile.position, institution: profile.institution, department: profile.department },
+  { ...employment.teaching, department: undefined },
+];
 ---
 <BaseLayout language={language}>
   <section id="introduction" class="hero" aria-labelledby="introduction-title">
@@ -70,12 +74,12 @@ const t = ui[language];
     <div class="cv-grid">
       <article class="cv-block">
         <h3>{t.position}</h3>
-        <div class="position-record"><p class="cv-date">{dateRange(employment.current.start, employment.current.end, language)}</p>
-          <div class="position-info"><p class="position-role">{profile.position[language]}</p><p class="position-institution">{profile.institution[language]}<br />{profile.department[language]}</p></div>
-        </div>
-        <div class="position-record"><p class="cv-date">{dateRange(employment.teaching.start, employment.teaching.end, language)}</p>
-          <div class="position-info"><p class="position-role">{employment.teaching.role[language]}</p><p class="position-institution">{employment.teaching.institution[language]}</p></div>
-        </div>
+        <div class="position-header" aria-hidden="true">{Object.values(t.positionColumns).map(label => <span>{label}</span>)}</div>
+        <ul class="position-list">{positions.map(position => <li class="position-record">
+          <p class="cv-date"><span class="row-label">{t.positionColumns.period}: </span>{dateRange(position.start, position.end, language)}</p>
+          <p class="position-role"><span class="row-label">{t.positionColumns.position}: </span>{position.role[language]}</p>
+          <p class="position-institution"><span class="row-label">{t.positionColumns.institution}: </span>{position.institution[language]}{position.department && <><br />{position.department[language]}</>}</p>
+        </li>)}</ul>
       </article>
       <article class="cv-block funding-block">
         <h3>{t.funding}</h3>

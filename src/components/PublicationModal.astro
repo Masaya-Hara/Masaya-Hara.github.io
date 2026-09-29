@@ -17,7 +17,6 @@ const t = ui[language];
     <p>{p.type && `${p.type} · `}{p.venue}</p>
     <p>{p.bibliography ?? (p.year ?? t.yearUnknown)}{p.status === 'to-appear' && ` · ${t.toAppear}`}{p.pages && ` · pp. ${p.pages}`}</p>
     <PublicationLinks publication={p} language={language} />
-    {p.imageSrc && <img class="publication-modal-image" src={p.imageSrc} alt={p.title} loading="lazy" />}
     <div class="dialog-section"><h3>{t.technicalSummary}</h3><p><InlineMath text={p.technicalSummary?.text[language] ?? t.summaryPending} /></p>{p.technicalSummary && <a class="summary-source" href={p.technicalSummary.source}>{t.source}</a>}</div>
     <div class="dialog-section"><h3>{t.relatedSurfaces}</h3>{p.relatedSurfaces?.length ? <ul>{p.relatedSurfaces.map(surface => <li><a href={surface.href}>{surface.title}</a></li>)}</ul> : <p>{t.noSurfaces}</p>}</div>
     {p.additionalImages?.length && <div class="dialog-section"><h3>{t.additionalImages}</h3>{p.additionalImages.map(image => <img src={image.src} alt={image.alt[language]} loading="lazy" />)}</div>}
