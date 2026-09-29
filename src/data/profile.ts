@@ -10,8 +10,8 @@ export const profile = {
     en: 'I am a mathematician working in differential geometry, with particular interests in integrable systems, transformation theory, and discrete differential geometry. My research focuses mainly on the geometry of surfaces and their transformations.',
     ja: '微分幾何学を専門とし、可積分系、変換理論、離散微分幾何学に関心を持っています。特に、曲面の幾何学とその変換を中心に研究しています。',
   },
-  email: 'hara@anan-nct.ac.jp',
-  address: { en: '265 Aoki, Minobayashi,\nAnan, Tokushima 774-0017,\nJapan', ja: '〒774-0017\n徳島県阿南市見能林町青木265' },
+  email: { local: 'hara', domain: 'anan-nct.ac.jp' },
+  address: { en: '265 Aoki\nMinobayashi, Anan\nTokushima 774-0017, Japan', ja: '〒774-0017\n徳島県阿南市見能林町青木265' },
   links: [
     { label: 'ORCID', icon: 'orcid', href: 'https://orcid.org/0009-0008-0614-0334' },
     { label: 'researchmap', icon: 'researchmap', href: 'https://researchmap.jp/MasayaHara' },

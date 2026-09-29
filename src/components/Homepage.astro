@@ -71,10 +71,10 @@ const t = ui[language];
       <article class="cv-block">
         <h3>{t.position}</h3>
         <div class="position-record"><p class="cv-date">{dateRange(employment.current.start, employment.current.end, language)}</p>
-          {language === 'en' ? <p>{profile.position.en}<br />{profile.institution.en}<br />{profile.department.en}</p> : <p>{profile.institution.ja}<br />{profile.department.ja}<br />{profile.position.ja}</p>}
+          <div class="position-info"><p class="position-role">{profile.position[language]}</p><p class="position-institution">{profile.institution[language]}<br />{profile.department[language]}</p></div>
         </div>
         <div class="position-record"><p class="cv-date">{dateRange(employment.teaching.start, employment.teaching.end, language)}</p>
-          {language === 'en' ? <p>{employment.teaching.role.en}<br />{employment.teaching.institution.en}</p> : <p>{employment.teaching.institution.ja}<br />{employment.teaching.role.ja}</p>}
+          <div class="position-info"><p class="position-role">{employment.teaching.role[language]}</p><p class="position-institution">{employment.teaching.institution[language]}</p></div>
         </div>
       </article>
       <article class="cv-block funding-block">
@@ -82,7 +82,7 @@ const t = ui[language];
         <div class="grant-header" aria-hidden="true">{Object.values(t.grantColumns).map(label => <span>{label}</span>)}</div>
         <ul class="grant-list">{[funding].map(grant => <li class="grant-row">
           <p class="cv-date"><span class="sr-only">{t.grantColumns.year}: </span>{grant.firstFiscalYear}–{grant.lastFiscalYear}{language === 'ja' ? '年度' : ''}</p>
-          <div class="grant-project"><p><span class="sr-only">{t.grantColumns.project}: </span><strong>{grant.agency[language]}</strong> · {grant.scheme[language]}</p><p class="funding-title"><InlineMath text={grant.title[language]} /></p></div>
+          <div class="grant-project"><p class="funding-title"><span class="sr-only">{t.grantColumns.project}: </span><InlineMath text={grant.title[language]} /></p><p class="grant-program"><strong>{grant.agency[language]}</strong> · {grant.scheme[language]}</p></div>
           <p class="grant-role"><span class="row-label">{t.grantColumns.role}: </span>{t.principalInvestigator}</p>
           <p class="grant-number"><span class="row-label">{t.grantNumber}: </span><a href={grant.url[language]}>{grant.number}</a></p>
         </li>)}</ul>
@@ -91,7 +91,7 @@ const t = ui[language];
   </Section>
     <Section id="contact" title={t.nav[5]}>
       <dl class="contact-grid">
-        <div><dt>{t.email}</dt><dd><a href={`mailto:${profile.email}`}>{profile.email}</a></dd></div>
+        <div><dt>{t.email}</dt><dd class="email-contact"><span>{profile.email.local} [at] {profile.email.domain}</span><button type="button" class="copy-email" data-copy-email data-local={profile.email.local} data-domain={profile.email.domain} data-label={t.copyEmail} data-copied={t.copiedEmail} data-error={t.copyEmailError} hidden>{t.copyEmail}</button><span class="email-status sr-only" role="status" aria-live="polite"></span></dd></div>
         <div><dt>{t.affiliation}</dt><dd>{profile.institution[language]}<br />{profile.department[language]}</dd></div>
         <div><dt>{t.address}</dt><dd class="postal-address">{profile.address[language]}</dd></div>
       </dl>
@@ -106,4 +106,5 @@ const t = ui[language];
 </BaseLayout>
 <script>
   import '../scripts/home';
+  import '../scripts/email';
 </script>

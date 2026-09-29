@@ -306,7 +306,7 @@ h1, .section-heading h2 { font-weight: 600; }
 .grant-row { display: grid; gap: 15px; padding-block: 12px; border-bottom: 1px solid var(--line); align-items: start; }
 .grant-row .cv-date { margin: 0; }
 .grant-project strong { color: var(--blue); font-weight: 600; }
-.grant-row .funding-title { margin: 4px 0 0; color: var(--ink); }
+.grant-row .funding-title { margin: 0; color: var(--ink); }
 .grant-number { font-variant-numeric: lining-nums tabular-nums; }
 .grant-number a { font-weight: 600; }
 @container main-content (max-width: 850px) {
@@ -324,4 +324,21 @@ h1, .section-heading h2 { font-weight: 600; }
 }
 @media (prefers-reduced-motion: reduce) {
   .publication-card { transition: none; }
+}
+
+/* Separate employment period, role, and institution without adding panels. */
+.position-record { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 18px; align-items: start; margin-top: 12px; }
+.position-record > * { min-width: 0; }
+.position-record .cv-date { margin: 0; color: var(--blue); }
+.position-record .position-role { font-weight: 600; color: var(--navy); }
+.position-institution { padding-left: 10px; margin-top: 3px; }
+.grant-program { margin-top: 5px; }
+.email-contact { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.copy-email { border: 1px solid var(--line); border-radius: 4px; background: var(--white); color: var(--blue); font-size: 13px; padding: 3px 8px; cursor: pointer; }
+.copy-email:hover { background: var(--pale); border-color: var(--accent-medium); }
+@container main-content (max-width: 650px) {
+  .contact-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 540px) {
+  .position-record { grid-template-columns: minmax(0, 1fr); gap: 4px; }
 }
