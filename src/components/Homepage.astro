@@ -52,14 +52,14 @@ const positions = [
   </Section>
 
   <Section id="publications" title={t.nav[2]}>
-    <FilterList id="publications" language={language} filters={t.publicationFilters} label={t.filterPublications}>
+    <FilterList id="publications" language={language} filters={t.publicationFilters} label={t.filterPublications} limit={3}>
       <div class="publication-list">{publications.map(publication => <PublicationCard publication={publication} language={language} />)}</div>
     </FilterList>
   </Section>
   {publications.map(publication => <PublicationModal publication={publication} language={language} />)}
 
   <Section id="talks" title={t.nav[3]}>
-    <FilterList id="talks" language={language} filters={t.talkFilters} label={t.filterTalks} limit={10}>
+    <FilterList id="talks" language={language} filters={t.talkFilters} label={t.filterTalks} limit={5}>
       <div class="talk-header" aria-hidden="true">{Object.values(t.talkColumns).map(label => <span>{label}</span>)}</div>
       <ol class="talk-list">{talks.map(talk => <li class="talk-row" data-filter-item data-tags={`${talk.scope}${talk.invited ? ' invited' : ''}`}>
         <p class="talk-date"><span class="sr-only">{t.talkColumns.date}: </span><time datetime={talk.date}>{talk.date}</time>{talk.invited && <span class="invited-marker">{t.invited}</span>}</p>
