@@ -54,8 +54,8 @@ const records: Publication[] = [
     ],
     technicalSummary: {
       text: {
-        en: 'Uses Penrose compactification to study singularities and blowup in Lorentz–Darboux transforms of spacelike plane curves, with remarks on curves of changing causal type.',
-        ja: 'Penrose図による共形コンパクト化を用い、空間的平面曲線のLorentz–Darboux変換における特異点と発散を調べます。因果的型が変化する曲線についても考察しています。',
+        en: 'Uses Penrose compactification to study singularities and blowup in Darboux transforms of spacelike plane curves, with remarks on curves of changing causal type.',
+        ja: 'Penrose図による共形コンパクト化を用い、空間的平面曲線のDarboux変換における特異点と発散を調べます。因果的型が変化する混合型曲線についても考察しています。',
       }, source: 'https://arxiv.org/abs/2312.03363',
     },
   },
@@ -121,6 +121,12 @@ const records: Publication[] = [
       { kind: 'repository', href: 'https://da.lib.kobe-u.ac.jp/da/kernel/0100504708/?lang=1' },
       ...(existsSync('public/papers/hara-phd-thesis-2026.pdf') ? [{ kind: 'pdf' as const, href: '/papers/hara-phd-thesis-2026.pdf' }] : []),
     ],
+    technicalSummary: {
+      text: {
+        en: 'This thesis develops the theory of constant mean curvature surfaces in simply isotropic 3-space from a four-dimensional viewpoint. It combines the classification of zero mean curvature surfaces with planar curvature lines, a Weierstrass representation for discrete CMC surfaces, and a four-dimensional interpretation of the decomposition theorem relating Euclidean, Minkowski, and isotropic zero mean curvature surfaces.',
+        ja: '4次元的な視点から、3次元等方空間における定平均曲率曲面を研究した博士論文です。平面的曲率線をもつ平均曲率零曲面の分類、離散CMC曲面のWeierstrass型表現公式、さらに異なる3次元空間（ユークリッド空間・ミンコフスキー空間・等方空間）の平均曲率零曲面を結ぶ分解定理の4次元的解釈を与えます。',
+      }, source: 'https://masaya-hara.github.io/papers/hara-phd-thesis-2026.pdf',
+    },
   },
   {
     id: 'rims-2321', title: 'Zero mean curvature surfaces with planar curvature lines in isotropic 3-space',
@@ -132,6 +138,12 @@ const records: Publication[] = [
       { kind: 'pdf', href: 'https://www.kurims.kyoto-u.ac.jp/~kyodo/kokyuroku/contents/pdf/2321-01.pdf' },
       { kind: 'doi', href: 'https://doi.org/10.17983/302371' },
     ],
+    technicalSummary: {
+      text: {
+        en: 'This article gives an account of zero mean curvature surfaces with planar curvature lines in isotropic 3-space, based on joint work with Joseph Cho. It presents the geometric and analytic structure underlying their classification and the role of the planar-curvature-line condition in the isotropic setting.',
+        ja: 'Joseph Cho氏との共同研究に基づき、3次元等方空間における平面的曲率線をもつ平均曲率零曲面について解説します。特に、その分類の背後にある幾何学的・解析的構造と、等方幾何における平面的曲率線条件の役割を扱います。',
+      }, source: 'https://www.kurims.kyoto-u.ac.jp/~kyodo/kokyuroku/contents/pdf/2321-01.pdf',
+    },
   },
   {
     id: 'maximal-darboux', title: 'Maximal Darboux transformations',
@@ -142,6 +154,12 @@ const records: Publication[] = [
       { kind: 'pdf', href: 'https://drive.google.com/file/d/1Cy52sX_-KNt6uS4zrD6TgEBw04wq7J2r/view' },
       { kind: 'event', href: 'https://sites.google.com/view/math-graduate/MATHSCI-FRESHMAN-SEMINAR/2025/' },
     ],
+    technicalSummary: {
+      text: {
+        en: 'We study Darboux transformations of maximal surfaces in Minkowski 3-space. Starting from a geometric formulation of the transformation, we construct Darboux transforms that remain within the class of zero mean curvature surfaces and investigate their characteristic geometric behavior.',
+        ja: 'ミンコフスキー3次元空間における極大面のDarboux変換を研究します。Darboux変換の幾何学的定義を出発点として、極大面に適合する変換を構成し、その幾何学的性質を調べます。',
+      }, source: 'https://drive.google.com/file/d/1Cy52sX_-KNt6uS4zrD6TgEBw04wq7J2r/view',
+    },
   },
 ];
 // Sort known years descending; preserve source order within each year; undated records follow.
