@@ -7,8 +7,8 @@ export const profile = {
   institution: { en: 'National Institute of Technology, Anan College', ja: '阿南工業高等専門学校' },
   department: { en: 'Department of Creative Technology Engineering, General Education', ja: '創造技術工学科 一般教養' },
   introduction: {
-    en: 'I am a mathematician working in differential geometry, with particular interests in integrable systems, transformation theory, and discrete differential geometry. My research focuses mainly on the geometry of surfaces and their transformations.',
-    ja: '微分幾何学を専門とし、可積分系、変換理論、離散微分幾何学に関心を持っています。特に、曲面の幾何学とその変換を中心に研究しています。',
+    en: 'I am a mathematician working in differential geometry, studying the geometry of curves and surfaces. My main tool is transformation theory, and I am also interested in its connections with integrable systems and discrete differential geometry.',
+    ja: '微分幾何学を専門とし、曲線や曲面の幾何学について研究しています。\n主な道具は変換理論で、そこから得られる可積分構造や離散微分幾何学にも関心を持っています。',
   },
   email: { local: 'hara', domain: 'anan-nct.ac.jp' },
   address: { en: '265 Aoki Minobayashi, Anan\nTokushima 774-0017, Japan', ja: '〒774-0017\n徳島県阿南市見能林町青木265' },
@@ -26,18 +26,8 @@ export const researchAreas: { title: Localized; description: Localized }[] = [
       "ja": "微分幾何学"
     },
     "description": {
-      "en": "I study the differential geometry of curves and surfaces, with particular emphasis on zero and constant mean curvature surfaces in Euclidean, Lorentz–Minkowski, and isotropic geometries. I am interested in representation formulas and in geometric properties that persist across different ambient geometries.",
-      "ja": "曲線・曲面の微分幾何学を研究しており、とくにユークリッド空間、Lorentz–Minkowski空間、isotropic geometry における平均曲率零曲面・定平均曲率曲面を扱っています。表現公式や、異なる周囲空間の間で保存される幾何学的性質に関心があります。"
-    }
-  },
-  {
-    "title": {
-      "en": "Integrable Systems",
-      "ja": "可積分系"
-    },
-    "description": {
-      "en": "I study integrable structures arising in surface geometry, including the relationships among Weierstrass-type representations, transformation theory, and integrable differential equations. A particular interest is how these structures govern deformations and finite type phenomena of surfaces.",
-      "ja": "曲面幾何に現れる可積分構造を研究しており、Weierstrass型表現公式、変換理論、可積分微分方程式の関係に関心があります。とくに、これらの構造が曲面の変形や finite type 性にどのように現れるかを調べています。"
+      "en": "Differential geometry is the study of geometric objects using differential calculus. I often study curves and surfaces through Weierstrass-type representation formulas and Lie sphere geometry. In particular, I am interested in comparing and unifying surface theories in different ambient geometries.",
+      "ja": "微分を用いて図形を研究する幾何学の分野です。私は、Weierstrass型表現公式やLie球面幾何学、DPW法を用いて、曲線や2次元曲面を考察することが多いです。特に、異なる空間における曲面の比較や統一化について研究しています。"
     }
   },
   {
@@ -46,8 +36,18 @@ export const researchAreas: { title: Localized; description: Localized }[] = [
       "ja": "変換理論"
     },
     "description": {
-      "en": "My work focuses on geometric transformations of curves and surfaces, especially Darboux transformations. A central theme is to understand which transformation-theoretic structures are preserved under correspondences or decompositions between zero mean curvature surfaces in different geometries.",
-      "ja": "曲線・曲面に対する幾何学的変換、とくにDarboux変換を研究しています。異なる幾何に属する平均曲率零曲面の対応や分解において、変換理論的な構造がどのように保存されるかを明らかにすることを主要なテーマの一つとしています。"
+      "en": "Transformation theory studies geometric operations that produce new curves or surfaces from given ones. I am particularly interested in Darboux transformations, which relate geometric objects through spheres. Weierstrass-type representation formulas can also be interpreted geometrically in terms of Christoffel transformations.",
+      "ja": "曲線や曲面に幾何的な操作を施し、別の曲線や曲面を生成する理論です。特に、球を媒介とするDarboux変換を研究しています。また、Weierstrass型表現公式をChristoffel変換として幾何的に解釈することもできます。"
+    }
+  },
+  {
+    "title": {
+      "en": "Integrable Systems",
+      "ja": "可積分系"
+    },
+    "description": {
+      "en": "For certain classes of surfaces, their geometric properties are closely related to integrable differential equations. Surfaces carrying such structures are often referred to as integrable surfaces. I am particularly interested in the integrable structures of isothermic surfaces and Weingarten surfaces.",
+      "ja": "ある種の曲面では、その幾何学的性質が可積分な微分方程式と密接に結び付いています。このような構造をもつ曲面を可積分曲面と呼びます。特に私は、双等温曲面やWeingarten曲面に現れる可積分構造について研究しています。"
     }
   },
   {
@@ -56,8 +56,8 @@ export const researchAreas: { title: Localized; description: Localized }[] = [
       "ja": "離散微分幾何学"
     },
     "description": {
-      "en": "I study discrete analogues of smooth surface theory, with emphasis on discrete Weierstrass representations and integrable discretizations. In particular, I am interested in discrete zero and constant mean curvature surfaces in isotropic geometry and the transformation-theoretic structures underlying their construction.",
-      "ja": "滑らかな曲面論の離散版を研究しており、とくに離散Weierstrass型表現公式や可積分な離散化を扱っています。isotropic geometry における離散的な平均曲率零曲面・定平均曲率曲面と、その構成の背後にある変換理論的構造に関心があります。"
+      "en": "I study discrete surfaces built from planar quadrilaterals. In particular, I consider natural discretizations arising from the integrable structures and transformation theory of surfaces. I am interested both in their differences from smooth surfaces and in new perspectives on smooth surface theory suggested by discrete geometry.",
+      "ja": "平面的な四角形を組み合わせてできる離散曲面について研究しています。曲面の可積分構造や変換理論から導かれる自然な離散化を扱います。滑らかな場合との違いや、離散構造から見えてくる滑らかな曲面論の新たな視点にも関心があります。"
     }
   }
 ];
