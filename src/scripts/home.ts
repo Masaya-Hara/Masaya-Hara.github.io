@@ -5,7 +5,11 @@ for (const container of document.querySelectorAll<HTMLElement>('[data-filter-lis
   const expand = container.querySelector<HTMLButtonElement>('[data-expand]')!;
   const count = container.querySelector<HTMLElement>('[data-count]')!;
   const empty = container.querySelector<HTMLElement>('[data-empty]')!;
-  const limit = Number(container.dataset.limit);
+  const publicationGrid = container.querySelector<HTMLElement>('.publication-list');
+  const getLimit = () => publicationGrid
+    ? getComputedStyle(publicationGrid).gridTemplateColumns.split(/\s+/).length
+    : Number(container.dataset.limit);
+  let limit = getLimit();
   let selected = 'all';
   let expanded = false;
   const render = () => {
@@ -35,6 +39,15 @@ for (const container of document.querySelectorAll<HTMLElement>('[data-filter-lis
   container.querySelector<HTMLElement>('.filter-controls')!.hidden = false;
   container.querySelector<HTMLElement>('.list-controls')!.hidden = false;
   render();
+  if (publicationGrid) {
+    // Keep the collapsed list to one row as the available width changes.
+    new ResizeObserver(() => {
+      const nextLimit = getLimit();
+      if (nextLimit === limit) return;
+      limit = nextLimit;
+      render();
+    }).observe(publicationGrid);
+  }
 }
 
 let modalTrigger: HTMLElement | null = null;
