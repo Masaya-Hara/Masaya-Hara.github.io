@@ -284,6 +284,7 @@ h1, .section-heading h2 { font-weight: 600; }
 #publications, #cv { background: var(--white); }
 .research-card h3 { border-left: 3px solid var(--accent-medium); padding-left: 9px; font-weight: 600; margin-bottom: 9px; }
 .research-card p { color: var(--ink); }
+html[lang='ja'] .research-card p { text-align: justify; text-justify: inter-character; }
 .publication-card { background: var(--white); transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease; }
 .publication-card.is-interactive:hover, .publication-card:focus-within { border-color: var(--accent-medium); background: var(--pale); box-shadow: 0 2px 8px #17324a0a; }
 .publication-content h3 { font-weight: 600; line-height: 1.35; }
