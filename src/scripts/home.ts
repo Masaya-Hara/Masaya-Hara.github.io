@@ -50,20 +50,19 @@ for (const container of document.querySelectorAll<HTMLElement>('[data-filter-lis
   }
 }
 
-let modalTrigger: HTMLElement | null = null;
-for (const trigger of document.querySelectorAll<HTMLButtonElement>('[data-open-publication]')) {
+for (const trigger of document.querySelectorAll<HTMLButtonElement>('[data-open-publication], [data-open-publication-image]')) {
   trigger.disabled = false;
-  const dialog = document.getElementById(`dialog-${trigger.dataset.openPublication}`) as HTMLDialogElement;
+  const dialog = document.getElementById(trigger.getAttribute('aria-controls')!) as HTMLDialogElement;
   const open = () => {
-    modalTrigger = trigger;
+    if (document.querySelector('dialog[open]')) return;
     dialog.showModal();
     document.body.classList.add('modal-open');
-    dialog.querySelector<HTMLElement>('h2')?.focus();
+    (dialog.querySelector<HTMLElement>('h2') ?? dialog.querySelector<HTMLButtonElement>('.dialog-close button'))?.focus();
   };
   trigger.addEventListener('click', open);
   const card = trigger.closest<HTMLElement>('[data-publication]')!;
   card.classList.add('is-interactive');
-  card.addEventListener('click', event => {
+  if (trigger.hasAttribute('data-open-publication')) card.addEventListener('click', event => {
     const target = event.target as Element;
     if (target.closest('a, button') || window.getSelection()?.toString()) return;
     open();
@@ -87,7 +86,7 @@ for (const trigger of document.querySelectorAll<HTMLButtonElement>('[data-open-p
     }
   });
   dialog.addEventListener('close', () => {
-    document.body.classList.remove('modal-open');
-    modalTrigger?.focus({ preventScroll: true });
+    document.body.classList.toggle('modal-open', !!document.querySelector('dialog[open]'));
+    trigger.focus({ preventScroll: true });
   });
 }

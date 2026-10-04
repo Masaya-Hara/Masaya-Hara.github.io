@@ -10,7 +10,7 @@ const { publication: p, language } = Astro.props;
 const t = ui[language];
 ---
 <article class="publication-card" data-filter-item data-tags={p.category} data-publication={p.id}>
-  <div class:list={['publication-image', { 'has-publication-image': p.imageSrc }]} title={p.imageSrc ? undefined : t.imagePlaceholder}>{p.imageSrc ? <img src={p.imageSrc} alt={p.title} loading="lazy" /> : <SurfaceArt kind={p.image} />}</div>
+  <button type="button" data-open-publication-image={p.id} aria-label={`${t.viewImage}: ${p.title}`} aria-haspopup="dialog" aria-controls={`image-dialog-${p.id}`} disabled class:list={['publication-image', { 'has-publication-image': p.imageSrc }]} title={p.imageSrc ? undefined : t.imagePlaceholder}>{p.imageSrc ? <img src={p.imageSrc} alt={p.title} loading="lazy" /> : <SurfaceArt kind={p.image} />}</button>
   <div class="publication-content">
     <p class="sample-label">{t.publicationFilters[p.category]}</p>
     <h3><button class="publication-open" type="button" data-open-publication={p.id} aria-haspopup="dialog" aria-controls={`dialog-${p.id}`} disabled><InlineMath text={p.title} /></button></h3>

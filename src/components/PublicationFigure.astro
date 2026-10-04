@@ -1,0 +1,7 @@
+---
+import SurfaceArt from './SurfaceArt.astro';
+import type { Publication } from '../data/publications';
+interface Props { publication: Publication; }
+const { publication: p } = Astro.props;
+---
+{p.imageSrc ? <img src={p.imageSrc} alt={p.title} loading="lazy" /> : <div role="img" aria-label={p.title}><SurfaceArt kind={p.image} /></div>}

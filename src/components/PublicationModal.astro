@@ -1,4 +1,5 @@
 ---
+import PublicationFigure from './PublicationFigure.astro';
 import InlineMath from './InlineMath.astro';
 import Authors from './Authors.astro';
 import PublicationLinks from './PublicationLinks.astro';
@@ -11,6 +12,9 @@ const t = ui[language];
 <dialog id={`dialog-${p.id}`} class="publication-dialog" aria-labelledby={`dialog-title-${p.id}`}>
   <div class="dialog-content">
     <form method="dialog" class="dialog-close"><button type="submit" autofocus>{t.close} <span aria-hidden="true">×</span></button></form>
+    <div class="publication-detail-layout">
+    <div class="publication-detail-image"><PublicationFigure publication={p} /></div>
+    <div class="publication-detail-info">
     <p class="sample-label">{t.publicationFilters[p.category]}</p>
     <h2 id={`dialog-title-${p.id}`} tabindex="-1"><InlineMath text={p.title} /></h2>
     <p class="publication-authors"><Authors authors={p.authors} /></p>
@@ -20,5 +24,14 @@ const t = ui[language];
     <div class="dialog-section"><h3>{t.technicalSummary}</h3><p><InlineMath text={p.technicalSummary?.text[language] ?? t.summaryPending} /></p>{p.technicalSummary && <a class="summary-source" href={p.technicalSummary.source}>{t.source}</a>}</div>
     <div class="dialog-section"><h3>{t.relatedSurfaces}</h3>{p.relatedSurfaces?.length ? <ul>{p.relatedSurfaces.map(surface => <li><a href={surface.href}>{surface.title}</a></li>)}</ul> : <p>{t.noSurfaces}</p>}</div>
     {p.additionalImages?.length && <div class="dialog-section"><h3>{t.additionalImages}</h3>{p.additionalImages.map(image => <img src={image.src} alt={image.alt[language]} loading="lazy" />)}</div>}
+    </div>
+    </div>
+  </div>
+</dialog>
+
+<dialog id={`image-dialog-${p.id}`} class="publication-dialog image-lightbox" aria-label={`${t.viewImage}: ${p.title}`}>
+  <div class="dialog-content">
+    <form method="dialog" class="dialog-close"><button type="submit" autofocus>{t.close} <span aria-hidden="true">×</span></button></form>
+    <div class="lightbox-image"><PublicationFigure publication={p} /></div>
   </div>
 </dialog>
