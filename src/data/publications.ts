@@ -80,7 +80,7 @@ const records: Publication[] = [
   {
     id: 'planar-curvature-lines',
     title: 'Zero mean curvature surfaces in isotropic space with planar curvature lines',
-    imageSrc: '/images/publications/ch2026.png',
+    imageSrc: '/images/publications/ch2026_blender_shadow.png',
     authors: ['Joseph Cho', 'Masaya Hara'], venue: 'Portugaliae Mathematica', bibliography: '83 (2026), no. 1/2, 113–144',
     year: 2026, category: 'peer-reviewed', image: 'wave',
     links: [
