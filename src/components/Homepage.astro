@@ -5,6 +5,7 @@ import Section from './Section.astro';
 import InlineMath from './InlineMath.astro';
 import Authors from './Authors.astro';
 import SurfaceArt from './SurfaceArt.astro';
+import CostaArt from './CostaArt.astro';
 import Icon from './Icon.astro';
 import PublicationCard from './PublicationCard.astro';
 import PublicationModal from './PublicationModal.astro';
@@ -24,8 +25,7 @@ const positions = [
 ---
 <BaseLayout language={language}>
   <section id="introduction" class="hero" aria-labelledby="introduction-title">
-    <!-- Replace this decorative layer with a background asset when supplied. -->
-    <div class="hero-background" aria-hidden="true"><SurfaceArt kind="wave" /></div>
+    <div class="hero-background" aria-hidden="true"><CostaArt /></div>
     <div class="hero-copy">
       <h1 id="introduction-title">{profile.name[language]}</h1>
       {language === 'ja' && <p class="roman-name" lang="en">{profile.romanName}</p>}

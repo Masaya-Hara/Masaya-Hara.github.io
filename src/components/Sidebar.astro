@@ -6,7 +6,7 @@ const { language } = Astro.props;
 const t = ui[language];
 const sections = sectionIds.map((id, i) => ({ id, title: t.nav[i] })).filter(section => surfaceGalleryEnabled || section.id !== 'surfaces');
 import Icon from './Icon.astro';
-import SurfaceArt from './SurfaceArt.astro';
+import CostaArt from './CostaArt.astro';
 ---
 
 <aside class="sidebar" aria-label={t.navigation}>
@@ -23,7 +23,7 @@ import SurfaceArt from './SurfaceArt.astro';
       <span>{section.title}</span>
     </a>)}
   </nav>
-  <div class="sidebar-motif" aria-hidden="true"><SurfaceArt kind="wave" /></div>
+  <div class="sidebar-motif" aria-hidden="true"><CostaArt /></div>
 </aside>
 
 <script>

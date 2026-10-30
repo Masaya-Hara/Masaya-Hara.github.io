@@ -1,0 +1,16 @@
+---
+import mesh from '../data/costa-mesh.json';
+
+// Orthographic view of the numerically sampled Costa minimal surface.
+const azimuth = Math.PI / 5;
+const elevation = Math.PI / 7;
+const paths = mesh.map(line => line.map(([x, y, z], index) => {
+  const horizontal = x * Math.cos(azimuth) - y * Math.sin(azimuth);
+  const depth = x * Math.sin(azimuth) + y * Math.cos(azimuth);
+  const vertical = z * Math.cos(elevation) - depth * Math.sin(elevation);
+  return `${index ? 'L' : 'M'}${(300 + horizontal * 52).toFixed(2)},${(220 - vertical * 52).toFixed(2)}`;
+}).join(' '));
+---
+<svg class="surface-art costa-art" viewBox="0 0 600 440" fill="none" aria-hidden="true">
+  <g class="surface-mesh">{paths.map(d => <path d={d} />)}</g>
+</svg>
