@@ -63,7 +63,7 @@ const positions = [
       <div class="talk-header" aria-hidden="true">{Object.values(t.talkColumns).map(label => <span>{label}</span>)}</div>
       <ol class="talk-list">{talks.map(talk => <li class="talk-row" data-filter-item data-tags={`${talk.scope}${talk.invited ? ' invited' : ''}`}>
         <p class="talk-date"><span class="sr-only">{t.talkColumns.date}: </span><time datetime={talk.date}>{talk.date}</time>{talk.invited && <span class="invited-marker">{t.invited}</span>}</p>
-        <div><h3><span class="sr-only">{t.talkColumns.title}: </span><InlineMath text={talk.title} /></h3>{talk.authors && <p>{t.coauthored}: <Authors authors={talk.authors} /></p>}</div>
+        <div><h3><span class="sr-only">{t.talkColumns.title}: </span><InlineMath text={talk.title} /></h3>{talk.authors && <p>{t.coauthored}: <Authors authors={talk.authors} presenter={talk.presenter} presenterLabel={t.presenter} /></p>}</div>
         <p class="talk-event"><span class="row-label">{t.talkColumns.event}: </span>{talk.url ? <a href={talk.url}><InlineMath text={talk.event} /></a> : <InlineMath text={talk.event} />}</p>
         <p class="talk-location"><span class="row-label">{t.talkColumns.place}: </span>{talk.location}</p>
       </li>)}</ol>

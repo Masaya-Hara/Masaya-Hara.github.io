@@ -1,5 +1,5 @@
 ---
-interface Props { authors: string[]; }
-const { authors } = Astro.props;
+interface Props { authors: string[]; presenter?: string; presenterLabel?: string; }
+const { authors, presenter, presenterLabel } = Astro.props;
 ---
-<span>{authors.map((author, i) => <>{i > 0 && ', '}{/^(Masaya Hara|M\. Hara)$/.test(author) ? <strong>{author}</strong> : author}</>)}</span>
+<span>{authors.map((author, i) => <>{i > 0 && ', '}{(presenter ? author === presenter : /^(Masaya Hara|M\. Hara)$/.test(author)) ? <strong>{author}</strong> : author}{author === presenter && presenterLabel && ` (${presenterLabel})`}</>)}</span>

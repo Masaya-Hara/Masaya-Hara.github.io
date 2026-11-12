@@ -3,6 +3,7 @@ export interface Talk {
   date: string;
   title: string;
   authors?: string[];
+  presenter?: string;
   event: string;
   location: string;
   scope: 'international' | 'domestic';
@@ -16,6 +17,7 @@ const records: Talk[] = [
     date: '2026-03-23',
     title: '平均曲率零曲面の分解で不変な幾何学性質について',
     authors: ['Shintaro Akamine', 'Joseph Cho', 'Masaya Hara', 'Yuta Ogata'],
+    presenter: 'Yuta Ogata',
     event: '日本数学会2026年度年会',
     location: '東京理科大学神楽坂キャンパス, Tokyo, Japan',
     scope: 'domestic',
