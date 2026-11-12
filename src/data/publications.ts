@@ -26,11 +26,14 @@ export interface Publication {
 const records: Publication[] = [
   {
     id: 'discrete-cmc-isotropic',
-    title: 'Weierstrass representations of discrete constant mean curvature surfaces in isotropic space',
+    title: 'Weierstrass representation of discrete constant mean curvature surfaces in isotropic space',
     imageSrc: '/images/publications/ch2027.png',
     authors: ['Joseph Cho', 'Masaya Hara'], venue: 'Annales Polonici Mathematici',
-    year: 2026, status: 'to-appear', category: 'peer-reviewed', image: 'wave',
+    bibliography: '137 (2026), 27–47',
+    year: 2026, category: 'peer-reviewed', image: 'wave',
     links: [
+      { kind: 'doi', href: 'https://doi.org/10.4064/ap250326-23-12' },
+      { kind: 'journal', href: 'https://www.impan.pl/en/publishing-house/journals-and-series/annales-polonici-mathematici/online/116538/weierstrass-representation-of-discrete-constant-mean-curvature-surfaces-in-isotropic-space' },
       { kind: 'arxiv', href: 'https://arxiv.org/abs/2502.15291' },
       { kind: 'arxivDoi', href: 'https://doi.org/10.48550/arXiv.2502.15291' },
     ],
