@@ -14,9 +14,9 @@ export const profile = {
   address: { en: '265 Aoki Minobayashi, Anan\nTokushima 774-0017, Japan', ja: '〒774-0017\n徳島県阿南市見能林町青木265' },
   links: [
     { label: 'ORCID', icon: 'orcid', href: 'https://orcid.org/0009-0008-0614-0334' },
-    { label: 'researchmap', icon: 'researchmap', href: 'https://researchmap.jp/MasayaHara' },
+    { label: 'researchmap', icon: 'researchmap', href: 'https://researchmap.jp/MasayaHara', localizedHref: { en: 'https://researchmap.jp/MasayaHara?lang=en', ja: 'https://researchmap.jp/MasayaHara' } },
     { label: 'J-GLOBAL', icon: 'jglobal', href: 'https://jglobal.jst.go.jp/en/detail?JGLOBAL_ID=202501015812502352' },
-  ] as { label: string; icon: string; href: string | null }[],
+  ] as { label: string; icon: string; href: string | null; localizedHref?: Localized }[],
 };
 
 export const researchAreas: { title: Localized; description: Localized }[] = [

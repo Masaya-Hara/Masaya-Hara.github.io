@@ -35,8 +35,9 @@ const positions = [
       <ul class="hero-keywords">{researchAreas.map(area => <li><InlineMath text={area.title[language]} /></li>)}</ul>
       <div class="profile-links">
         {profile.links.map(link => {
-          const Tag = link.href ? 'a' : 'span';
-          return <Tag href={link.href ?? undefined} aria-disabled={!link.href ? 'true' : undefined} title={!link.href ? t.profilePending : undefined}>
+          const href = link.localizedHref?.[language] ?? link.href;
+          const Tag = href ? 'a' : 'span';
+          return <Tag href={href ?? undefined} aria-disabled={!href ? 'true' : undefined} title={!href ? t.profilePending : undefined}>
             {link.icon === 'jglobal' ? <Icon name="jglobal" /> : <span class:list={['profile-icon', link.icon]} aria-hidden="true">{link.icon === 'orcid' ? 'iD' : 'R'}</span>}
             {link.label}
           </Tag>;
